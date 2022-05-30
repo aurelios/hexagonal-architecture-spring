@@ -1,8 +1,8 @@
 package arquitetura.spring.hexagonal.config;
 
-import arquitetura.spring.hexagonal.adapters.outbound.BuscarEnderecoAdapter;
-import arquitetura.spring.hexagonal.adapters.outbound.SalvarUsuarioAdapter;
-import arquitetura.spring.hexagonal.application.core.service.SalvarUsuarioService;
+import arquitetura.spring.hexagonal.adapters.outbound.EnderecoBuscaCepAdapter;
+import arquitetura.spring.hexagonal.adapters.outbound.UsuarioAdapter;
+import arquitetura.spring.hexagonal.application.core.service.UsuarioService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class Config {
 
     @Bean
-	public SalvarUsuarioService salvarUsuarioService(SalvarUsuarioAdapter salvarUsuarioAdapter, BuscarEnderecoAdapter buscarEnderecoAdapter){
-		return new SalvarUsuarioService(salvarUsuarioAdapter, buscarEnderecoAdapter);
+	public UsuarioService salvarUsuarioService(UsuarioAdapter usuarioAdapter, EnderecoBuscaCepAdapter buscarEnderecoBuscaCepAdapter){
+		return new UsuarioService(usuarioAdapter, buscarEnderecoBuscaCepAdapter);
 	}
 }

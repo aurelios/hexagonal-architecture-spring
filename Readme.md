@@ -1,17 +1,61 @@
-# Exemplo de arquitetura Hexagonal feita em Spring
+# ☕ Hexagonal Architecture + Spring
 
 Esse projeto foi feito para explicar melhor sobre a arquitetura Hexagonal, podendo ter sido feito com qualquer outra linguagem ou framework.
 
-## Para rodar a app na sua máquina
+#Arquitetura Hexagonal
+![img.png](img.png)
 
-Execute esse comando em sua IDE ou linha de comando preferida:
-```shell script
-mvn spring-boot:run
-```
-Veja a imagem de como está feita essa arquitetura em uma visão de componentes do C4 model
+# Modelagem da arquitetura em uma visão de componentes
 
 ![modelo.png](modelo.png)
 
-Também fiz um exemplo igual em Quarkus.
-Veja o repo abaixo:
-https://github.com/natanielpaiva/arquitetura-hexagonal
+
+## 🚀 Para rodar a app na sua máquina
+
+1 - Inicialize a applicação
+   
+```shell script
+mvn spring-boot:run
+```
+2 - Suba o container do banco PostgreSQL
+```shell script
+cd /docker
+docker-compose up
+```
+
+# REST API
+## Create Usuario
+### Request
+```
+POST /usuario
+```
+```
+curl -X POST http://localhost:8080/usuario -H 'content-type: application/json'  -d '{"nome":"Chimarrão","instagram":"@chimarrao","cep":"38400016"}'
+```
+
+```
+{
+	"nome":"Chimarrão",
+	"instagram":"@chimarrao",
+	"cep":"38400016"
+}
+```
+
+### Response
+```
+{
+    "id": 2,
+    "nome": "Chimarrão",
+    "instagram": "@chimarrao",
+    "linkedin": null,
+    "github": null,
+    "dataNascimento": null,
+    "endereco": {
+        "cep": "38400-016",
+        "logradouro": "Rua Segismundo Moraes",
+        "uf": "MG",
+        "cidade": null,
+        "id": 2
+    }
+}
+```

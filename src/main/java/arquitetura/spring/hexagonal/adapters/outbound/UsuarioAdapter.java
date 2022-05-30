@@ -5,7 +5,7 @@ import arquitetura.spring.hexagonal.adapters.inbound.mapper.UsuarioEntityToUsuar
 import arquitetura.spring.hexagonal.adapters.inbound.mapper.UsuarioToUsuarioEntityMapper;
 import arquitetura.spring.hexagonal.adapters.outbound.repository.UsuarioRepository;
 import arquitetura.spring.hexagonal.application.core.domain.Usuario;
-import arquitetura.spring.hexagonal.application.ports.out.SalvarUsuarioPort;
+import arquitetura.spring.hexagonal.application.ports.out.UsuarioPort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,22 +13,22 @@ import javax.transaction.Transactional;
 
 @Component
 @AllArgsConstructor
-public class SalvarUsuarioAdapter implements SalvarUsuarioPort {
+public class UsuarioAdapter implements UsuarioPort {
 
     private final UsuarioRepository usuarioRepository;
 
-    private final UsuarioToUsuarioEntityMapper usuarioToUsuarioEntityMapper;
+    private final UsuarioToUsuarioEntityMapper usuarioToUsuarioEntity;
 
-    private final UsuarioEntityToUsuarioMapper usuarioToUsuarioEntitymMapper;
+    private final UsuarioEntityToUsuarioMapper usuarioEntityToUsuario;
 
-    private final EnderecoToEnderecoEntityMapper enderecoToEnderecoEntityMapper;
+    private final EnderecoToEnderecoEntityMapper enderecoToEnderecoEntity;
 
     @Override
     @Transactional
     public Usuario salvar(Usuario usuario) {
-        var usuarioEntity = usuarioToUsuarioEntityMapper.mapper(usuario);
-        var enderecoEntity = enderecoToEnderecoEntityMapper.mapper(usuario.getEndereco());
+        var usuarioEntity = usuarioToUsuarioEntity.mapper(usuario);
+        var enderecoEntity = enderecoToEnderecoEntity.mapper(usuario.getEndereco());
         usuarioEntity.setEndereco(enderecoEntity);
-        return usuarioToUsuarioEntitymMapper.mapper(usuarioRepository.save(usuarioEntity));
+        return usuarioEntityToUsuario.mapper(usuarioRepository.save(usuarioEntity));
     }
 }
