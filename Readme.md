@@ -12,16 +12,24 @@ Esse projeto foi feito para explicar melhor sobre a arquitetura Hexagonal, poden
 
 ## 🚀 Para rodar a app na sua máquina
 
-1 - Inicialize a applicação
-   
+1 - Suba o container do banco PostgreSQL
 ```shell script
-mvn spring-boot:run
+cd docker
 ```
-2 - Suba o container do banco PostgreSQL
 ```shell script
-cd /docker
 docker-compose up
 ```
+2 - Inicialize a applicação
+```shell script
+cd..
+```
+```shell script
+./mvnw install
+```
+```shell script
+./mvnw spring-boot:run
+```
+
 
 # REST API
 ## Create Usuario
